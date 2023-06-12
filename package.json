@@ -37,5 +37,9 @@
 		"vite": "^4.3.0",
 		"vitest": "^0.25.3"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@tanstack/svelte-table": "^8.9.2",
+		"dayjs": "^1.11.8"
+	}
 }

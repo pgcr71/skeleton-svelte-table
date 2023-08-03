@@ -5,7 +5,7 @@ import {
   Radio,
   RadioProps,
   Tooltip,
-} from '@mantine/core';
+} from '@svelteuidev/core';
 import type { MRT_Row, MRT_TableInstance } from '..';
 
 interface Props {

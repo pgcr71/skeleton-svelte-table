@@ -1,5 +1,5 @@
 import React, { MouseEvent } from 'react';
-import { ActionIcon, Box, Transition, Tooltip } from '@mantine/core';
+import { ActionIcon, Box, Transition, Tooltip } from '@svelteuidev/core';
 import { MRT_Header, MRT_TableInstance } from '..';
 
 interface Props {

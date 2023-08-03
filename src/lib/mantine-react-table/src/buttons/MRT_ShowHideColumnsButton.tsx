@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActionIcon, ActionIconProps, Menu, Tooltip } from '@mantine/core';
+import { ActionIcon, ActionIconProps, Menu, Tooltip } from '@svelteuidev/core';
 import { MRT_ShowHideColumnsMenu } from '../menus/MRT_ShowHideColumnsMenu';
 import type { HTMLPropsRef, MRT_TableInstance } from '..';
 

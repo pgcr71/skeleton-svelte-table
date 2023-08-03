@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ActionIcon, Collapse, Menu, TextInput, Tooltip } from '@mantine/core';
-import { useDebouncedValue } from '@mantine/hooks';
+import { ActionIcon, Collapse, Menu, TextInput, Tooltip } from '@svelteuidev/core';
+import { useDebouncedValue } from '@svelteuidev/hooks';
 import { MRT_FilterOptionMenu } from '../menus/MRT_FilterOptionMenu';
 import type { MRT_TableInstance } from '..';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex } from '@mantine/core';
+import { Flex } from '@svelteuidev/core';
 import { MRT_ToggleFullScreenButton } from '../buttons/MRT_ToggleFullScreenButton';
 import { MRT_ShowHideColumnsButton } from '../buttons/MRT_ShowHideColumnsButton';
 import { MRT_ToggleDensePaddingButton } from '../buttons/MRT_ToggleDensePaddingButton';

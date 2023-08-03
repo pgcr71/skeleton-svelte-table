@@ -1,5 +1,5 @@
 import React, { Fragment, useMemo } from 'react';
-import { Flex, Menu } from '@mantine/core';
+import { Flex, Menu } from '@svelteuidev/core';
 import type {
   MRT_FilterOption,
   MRT_Header,

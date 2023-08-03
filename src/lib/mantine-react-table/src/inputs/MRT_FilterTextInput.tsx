@@ -8,8 +8,8 @@ import {
   packSx,
   Select,
   TextInput,
-} from '@mantine/core';
-import { useDebouncedValue } from '@mantine/hooks';
+} from '@svelteuidev/core';
+import { useDebouncedValue } from '@svelteuidev/hooks';
 import type { MRT_Header, MRT_TableInstance } from '..';
 
 interface Props {

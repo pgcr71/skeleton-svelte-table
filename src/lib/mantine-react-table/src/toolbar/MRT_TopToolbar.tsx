@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Flex, MantineTheme } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import { Box, Flex, MantineTheme } from '@svelteuidev/core';
+import { useMediaQuery } from '@svelteuidev/hooks';
 import { MRT_GlobalFilterTextInput } from '../inputs/MRT_GlobalFilterTextInput';
 import { MRT_ProgressBar } from './MRT_ProgressBar';
 import { MRT_TablePagination } from './MRT_TablePagination';

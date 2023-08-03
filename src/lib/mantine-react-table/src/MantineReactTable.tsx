@@ -22,7 +22,7 @@ import type {
   SelectProps,
   MultiSelectProps,
   FlexProps,
-} from '@mantine/core';
+} from '@svelteuidev/core';
 import type {
   AggregationFn,
   Cell,

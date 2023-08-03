@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mantine/core';
+import { Box } from '@svelteuidev/core';
 import { MRT_TableFooterCell } from './MRT_TableFooterCell';
 import type {
   MRT_Header,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActionIcon, ActionIconProps, Tooltip } from '@mantine/core';
+import { ActionIcon, ActionIconProps, Tooltip } from '@svelteuidev/core';
 import { HTMLPropsRef, MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}>

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { UnstyledButton, CopyButton, Tooltip } from '@mantine/core';
+import { UnstyledButton, CopyButton, Tooltip } from '@svelteuidev/core';
 import { MRT_Cell, MRT_TableInstance } from '..';
 import { getPrimaryColor } from '../column.utils';
 

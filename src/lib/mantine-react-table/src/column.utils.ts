@@ -2,7 +2,7 @@ import type { Row } from '@tanstack/svelte-table';
 import { MRT_AggregationFns } from './aggregationFns';
 import { MRT_FilterFns } from './filterFns';
 import { MRT_SortingFns } from './sortingFns';
-import { BoxProps, MantineTheme } from '@mantine/core';
+import { BoxProps, MantineTheme } from '@svelteuidev/core';
 import type {
   MantineReactTableProps,
   MantineShade,

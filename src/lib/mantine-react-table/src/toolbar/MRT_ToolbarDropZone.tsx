@@ -1,5 +1,5 @@
 import React, { DragEvent, useEffect } from 'react';
-import { Flex, Text, Transition } from '@mantine/core';
+import { Flex, Text, Transition } from '@svelteuidev/core';
 import type { MRT_TableInstance } from '..';
 import { getPrimaryColor } from '../column.utils';
 

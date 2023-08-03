@@ -1,5 +1,5 @@
 import React, { DragEvent, memo, useRef } from 'react';
-import { Box } from '@mantine/core';
+import { Box } from '@svelteuidev/core';
 import { Memo_MRT_TableBodyCell, MRT_TableBodyCell } from './MRT_TableBodyCell';
 import { MRT_TableDetailPanel } from './MRT_TableDetailPanel';
 import { getPrimaryColor } from '../column.utils';

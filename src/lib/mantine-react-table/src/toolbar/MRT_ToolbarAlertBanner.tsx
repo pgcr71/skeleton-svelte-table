@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Alert, Box, Chip, Collapse, Flex } from '@mantine/core';
+import { Alert, Box, Chip, Collapse, Flex } from '@svelteuidev/core';
 import type { MRT_TableInstance } from '..';
 
 interface Props<TData extends Record<string, any> = {}> {

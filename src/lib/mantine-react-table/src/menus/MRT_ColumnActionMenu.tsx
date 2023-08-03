@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActionIcon, Menu, Tooltip } from '@mantine/core';
+import { ActionIcon, Menu, Tooltip } from '@svelteuidev/core';
 import type { MRT_Header, MRT_TableInstance } from '..';
 
 export const commonListItemStyles = {

@@ -1,3 +1,5 @@
+<script lang="ts">
+
 import React, { MouseEvent } from 'react';
 import { ActionIcon, Box, Transition, Tooltip } from '@svelteuidev/core';
 import { MRT_Header, MRT_TableInstance } from '..';
@@ -7,7 +9,9 @@ interface Props {
   table: MRT_TableInstance;
 }
 
-export const MRT_TableHeadCellFilterLabel = ({ header, table }: Props) => {
+export let header, table
+
+
   const {
     options: {
       icons: { IconFilter },
@@ -48,8 +52,8 @@ export const MRT_TableHeadCellFilterLabel = ({ header, table }: Props) => {
       }"`,
     )
     .replace('" "', '');
+  </script>
 
-  return (
     <Transition
       transition="scale"
       mounted={
@@ -58,11 +62,11 @@ export const MRT_TableHeadCellFilterLabel = ({ header, table }: Props) => {
           (!!column.getFilterValue()?.[0] || !!column.getFilterValue()?.[1]))
       }
     >
-      {(styles) => (
+    <svelte:fragment let:styles>
         <Box component="span" sx={{ flex: '0 0' }} style={styles}>
           <Tooltip withinPortal withArrow position="top" label={filterTooltip}>
             <ActionIcon
-              onClick={(event: MouseEvent<HTMLButtonElement>) => {
+              on:click={(event) => {
                 setShowColumnFilters(true);
                 setTimeout(() => {
                   filterInputRefs.current[`${column.id}-0`]?.focus();
@@ -80,7 +84,6 @@ export const MRT_TableHeadCellFilterLabel = ({ header, table }: Props) => {
             </ActionIcon>
           </Tooltip>
         </Box>
-      )}
-    </Transition>
-  );
-};
+  </svelte:fragment>
+</Transition>
+

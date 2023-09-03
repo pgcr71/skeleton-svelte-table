@@ -1,3 +1,5 @@
+<script lang="ts">
+
 import React from 'react';
 import { ActionIcon, Indicator, Tooltip } from '@svelteuidev/core';
 import type { MRT_Header, MRT_TableInstance } from '..';
@@ -7,7 +9,10 @@ interface Props {
   table: MRT_TableInstance;
 }
 
-export const MRT_TableHeadCellSortLabel = ({ header, table }: Props) => {
+export let table;
+export let header;
+
+
   const {
     getState,
     options: {
@@ -26,8 +31,8 @@ export const MRT_TableHeadCellSortLabel = ({ header, table }: Props) => {
     : localization.unsorted;
 
   const showIndicator = sorting.length >= 2 && column.getSortIndex() !== -1;
+</script>
 
-  return (
     <Tooltip withinPortal withArrow position="top" label={sortTooltip}>
       <Indicator
         color="transparent"
@@ -50,15 +55,14 @@ export const MRT_TableHeadCellSortLabel = ({ header, table }: Props) => {
             },
           }}
         >
-          {column.getIsSorted() === 'desc' ? (
-            <IconSortDescending />
-          ) : column.getIsSorted() === 'asc' ? (
-            <IconSortAscending />
-          ) : (
-            <IconArrowsSort />
-          )}
+        {#if column.getIsSorted() === 'desc'}
+        <IconSortDescending />
+        {:else if column.getIsSorted() === 'asc'}
+        <IconSortAscending />
+        {:else}
+        <IconArrowsSort />
+        {/if}
+ 
         </ActionIcon>
       </Indicator>
     </Tooltip>
-  );
-};

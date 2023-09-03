@@ -1,3 +1,5 @@
+
+<script lang="ts">
 import React, { DragEvent, RefObject } from 'react';
 import { MRT_GrabHandleButton } from '../buttons/MRT_GrabHandleButton';
 import { reorderColumn } from '../column.utils';
@@ -9,11 +11,11 @@ interface Props {
   tableHeadCellRef: RefObject<HTMLTableCellElement>;
 }
 
-export const MRT_TableHeadCellGrabHandle = ({
-  column,
+export let   column,
   table,
-  tableHeadCellRef,
-}: Props) => {
+  tableHeadCellRef;
+
+
   const {
     getState,
     options: { enableColumnOrdering, mantineColumnDragHandleProps },
@@ -65,13 +67,12 @@ export const MRT_TableHeadCellGrabHandle = ({
     setDraggingColumn(null);
     setHoveredColumn(null);
   };
+</script>
 
-  return (
     <MRT_GrabHandleButton
       actionIconProps={actionIconProps}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       table={table}
     />
-  );
-};
+

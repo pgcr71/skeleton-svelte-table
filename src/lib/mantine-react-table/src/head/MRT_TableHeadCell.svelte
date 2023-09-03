@@ -1,3 +1,5 @@
+<script lang="ts">
+
 import React, { DragEvent, ReactNode, useMemo } from 'react';
 import { Box, Flex, MantineTheme, useMantineTheme } from '@svelteuidev/core';
 import { MRT_ColumnActionMenu } from '../menus/MRT_ColumnActionMenu';
@@ -14,7 +16,9 @@ interface Props {
   table: MRT_TableInstance;
 }
 
-export const MRT_TableHeadCell = ({ header, table }: Props) => {
+export let header;
+export let table;
+
   const theme = useMantineTheme();
   const {
     getState,
@@ -109,19 +113,20 @@ export const MRT_TableHeadCell = ({ header, table }: Props) => {
         })
       : columnDef?.Header ?? (columnDef.header as ReactNode);
 
-  return (
+    </script>
+
     <Box
       component="th"
       align={columnDefType === 'group' ? 'center' : 'left'}
       colSpan={header.colSpan}
       onDragEnter={handleDragEnter}
-      ref={(node: HTMLTableCellElement) => {
+      ref={(node) => {
         if (node) {
           tableHeadCellRefs.current[column.id] = node;
         }
       }}
       {...tableCellProps}
-      sx={(theme: MantineTheme) => ({
+      sx={(theme) => ({
         flexDirection: layoutMode === 'grid' ? 'column' : undefined,
         fontWeight: 'bold',
         overflow: 'visible',
@@ -156,91 +161,101 @@ export const MRT_TableHeadCell = ({ header, table }: Props) => {
         ...draggingBorders,
       })}
     >
-      {header.isPlaceholder ? null : (
+    {#if !header.isPlaceholder}
+    
+      <Flex
+        className="mantine-TableHeadCell-Content"
+        sx={{
+          alignItems: 'flex-start',
+          flexDirection:
+            tableCellProps?.align === 'right' ? 'row-reverse' : 'row',
+          justifyContent:
+            columnDefType === 'group' || tableCellProps?.align === 'center'
+              ? 'center'
+              : column.getCanResize()
+              ? 'space-between'
+              : 'flex-start',
+          position: 'relative',
+          width: '100%',
+        }}
+      >
         <Flex
-          className="mantine-TableHeadCell-Content"
+          className="mantine-TableHeadCell-Content-Labels"
+          onClick={column.getToggleSortingHandler()}
           sx={{
-            alignItems: 'flex-start',
+            alignItems: 'center',
+            cursor:
+              column.getCanSort() && columnDefType !== 'group'
+                ? 'pointer'
+                : undefined,
             flexDirection:
               tableCellProps?.align === 'right' ? 'row-reverse' : 'row',
-            justifyContent:
-              columnDefType === 'group' || tableCellProps?.align === 'center'
-                ? 'center'
-                : column.getCanResize()
-                ? 'space-between'
-                : 'flex-start',
-            position: 'relative',
-            width: '100%',
+            overflow: columnDefType === 'data' ? 'hidden' : undefined,
+            paddingLeft:
+              tableCellProps?.align === 'center'
+                ? `${headerPL}rem`
+                : undefined,
           }}
         >
           <Flex
-            className="mantine-TableHeadCell-Content-Labels"
-            onClick={column.getToggleSortingHandler()}
+            className="mantine-TableHeadCell-Content-Wrapper"
             sx={{
-              alignItems: 'center',
-              cursor:
-                column.getCanSort() && columnDefType !== 'group'
-                  ? 'pointer'
-                  : undefined,
-              flexDirection:
-                tableCellProps?.align === 'right' ? 'row-reverse' : 'row',
               overflow: columnDefType === 'data' ? 'hidden' : undefined,
-              paddingLeft:
-                tableCellProps?.align === 'center'
-                  ? `${headerPL}rem`
-                  : undefined,
+              textOverflow: 'ellipsis',
+              whiteSpace:
+                (columnDef.header?.length ?? 0) < 20 ? 'nowrap' : 'normal',
             }}
+            title={columnDefType === 'data' ? columnDef.header : undefined}
           >
-            <Flex
-              className="mantine-TableHeadCell-Content-Wrapper"
-              sx={{
-                overflow: columnDefType === 'data' ? 'hidden' : undefined,
-                textOverflow: 'ellipsis',
-                whiteSpace:
-                  (columnDef.header?.length ?? 0) < 20 ? 'nowrap' : 'normal',
-              }}
-              title={columnDefType === 'data' ? columnDef.header : undefined}
-            >
-              {headerElement}
-            </Flex>
-            {column.getCanSort() && (
-              <MRT_TableHeadCellSortLabel header={header} table={table} />
-            )}
-            {column.getCanFilter() && (
-              <MRT_TableHeadCellFilterLabel header={header} table={table} />
-            )}
+            {headerElement}
           </Flex>
-          {columnDefType !== 'group' && (
-            <Flex
-              className="mantine-TableHeadCell-Content-Actions"
-              sx={{
-                alignItems: 'center',
-                alignSelf: 'center',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {showDragHandle && (
-                <MRT_TableHeadCellGrabHandle
-                  column={column}
-                  table={table}
-                  tableHeadCellRef={{
-                    current: tableHeadCellRefs.current[column.id],
-                  }}
-                />
-              )}
-              {showColumnActions && (
-                <MRT_ColumnActionMenu header={header} table={table} />
-              )}
-            </Flex>
-          )}
-          {column.getCanResize() && (
-            <MRT_TableHeadCellResizeHandle header={header} table={table} />
-          )}
+          {#if column.getCanSort()}
+          <MRT_TableHeadCellSortLabel header={header} table={table} />
+          {/if}
+          {#if column.getCanFilter()}
+          <MRT_TableHeadCellFilterLabel header={header} table={table} />
+          {/if}
+ 
         </Flex>
-      )}
-      {column.getCanFilter() && (
-        <MRT_TableHeadCellFilterContainer header={header} table={table} />
-      )}
+        {#if columnDefType !== 'group'}
+        <Flex
+        className="mantine-TableHeadCell-Content-Actions"
+        sx={{
+          alignItems: 'center',
+          alignSelf: 'center',
+          whiteSpace: 'nowrap',
+        }}
+      >
+      {#if showDragHandle}
+      <MRT_TableHeadCellGrabHandle
+      column={column}
+      table={table}
+      tableHeadCellRef={{
+        current: tableHeadCellRefs.current[column.id],
+      }}
+    />
+      {/if}
+      {#if showColumnActions}
+
+        <MRT_ColumnActionMenu header={header} table={table} />
+   
+      {/if}
+  
+      </Flex>
+        {/if}
+
+         
+        {#if column.getCanResize()}
+        <MRT_TableHeadCellResizeHandle header={header} table={table} />
+        {/if}
+   
+      </Flex>
+    
+    {/if}
+
+    {#if column.getCanFilter()}
+    <MRT_TableHeadCellFilterContainer header={header} table={table} />
+    {/if}
+ 
     </Box>
-  );
-};
+

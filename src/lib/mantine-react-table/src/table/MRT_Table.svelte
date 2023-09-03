@@ -1,22 +1,22 @@
+
+
+<script lang="ts">
 import React, { useCallback, useMemo } from 'react';
 import {
   defaultRangeExtractor,
   Range,
   useVirtualizer,
-} from '@tanstack/react-virtual';
-import { Table } from '@svelteuidev/core';
+} from '@tanstack/svelte-virtual';
+import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell, Checkbox, TableSearch } from 'flowbite-svelte';
 import { MRT_TableHead } from '../head/MRT_TableHead';
 import { Memo_MRT_TableBody, MRT_TableBody } from '../body/MRT_TableBody';
 import { MRT_TableFooter } from '../footer/MRT_TableFooter';
 import { parseCSSVarId } from '../column.utils';
 import type { MRT_TableInstance, MRT_Virtualizer } from '..';
 
-interface Props {
-  table: MRT_TableInstance;
-}
+export let table
 
-export const MRT_Table = ({ table }: Props) => {
-  const {
+const {
     getFlatHeaders,
     getState,
     options: {
@@ -34,13 +34,20 @@ export const MRT_Table = ({ table }: Props) => {
     },
     refs: { tableContainerRef },
   } = table;
-  const {
+
+  interface Props {
+  table: MRT_TableInstance;
+}
+
+const {
     columnSizing,
     columnSizingInfo,
     columnPinning,
     columnVisibility,
     density,
   } = getState();
+
+
 
   const tableProps =
     mantineTableProps instanceof Function
@@ -142,7 +149,10 @@ export const MRT_Table = ({ table }: Props) => {
     virtualPaddingRight,
   };
 
-  return (
+</script>
+
+
+
     <Table
       highlightOnHover
       horizontalSpacing={density}
@@ -164,7 +174,7 @@ export const MRT_Table = ({ table }: Props) => {
         },
         ...(tableProps?.sx instanceof Function
           ? tableProps.sx(theme)
-          : (tableProps?.sx as any)),
+          : (tableProps?.sx)),
       })}
       style={{ ...columnSizeVars, ...tableProps?.style }}
     >
@@ -176,5 +186,4 @@ export const MRT_Table = ({ table }: Props) => {
       )}
       {enableTableFooter && <MRT_TableFooter {...props} />}
     </Table>
-  );
-};
+

@@ -1,3 +1,5 @@
+<script lang="ts">
+
 import React from 'react';
 import { Box, Divider } from '@svelteuidev/core';
 import { MRT_Header, MRT_TableInstance } from '..';
@@ -8,7 +10,9 @@ interface Props {
   table: MRT_TableInstance;
 }
 
-export const MRT_TableHeadCellResizeHandle = ({ header, table }: Props) => {
+export let header, table;
+
+
   const {
     getState,
     options: { columnResizeMode },
@@ -17,7 +21,8 @@ export const MRT_TableHeadCellResizeHandle = ({ header, table }: Props) => {
   const { density } = getState();
   const { column } = header;
 
-  return (
+</script>
+
     <Box
       onDoubleClick={() => {
         setColumnSizingInfo((old) => ({
@@ -72,5 +77,4 @@ export const MRT_TableHeadCellResizeHandle = ({ header, table }: Props) => {
         }}
       />
     </Box>
-  );
-};
+

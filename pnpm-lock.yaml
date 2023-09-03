@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@sveltejs/vite-plugin-svelte': ^2.4.2
+  '@tanstack/svelte-virtual': 3.0.0-beta.12
   autoprefixer: ^10.4.14
   flowbite-svelte: ^0.44.4
   postcss: ^8.4.24
@@ -9,6 +10,9 @@ specifiers:
   svelte: ^4.0.5
   tailwindcss: ^3.3.2
   vite: ^4.4.5
+
+dependencies:
+  '@tanstack/svelte-virtual': 3.0.0-beta.12
 
 devDependencies:
   '@sveltejs/vite-plugin-svelte': 2.4.5_svelte@4.2.0+vite@4.4.9
@@ -305,6 +309,10 @@ packages:
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
     dev: true
 
+  /@reach/observe-rect/1.2.0:
+    resolution: {integrity: sha512-Ba7HmkFgfQxZqqaeIWWkNK0rEhpxVQHIoVyW1YDSkGsGIXzcaW4deC8B0pZrNSSyLTdIk7y+5olKt5+g0GmFIQ==}
+    dev: false
+
   /@sveltejs/vite-plugin-svelte-inspector/1.0.4_rh5hfgladoiwncqyml2z37trge:
     resolution: {integrity: sha512-zjiuZ3yydBtwpF3bj0kQNV0YXe+iKE545QGZVTaylW3eAzFr+pJ/cwK8lZEaRp4JtaJXhD5DyWAV4AxLh6DgaQ==}
     engines: {node: ^14.18.0 || >= 16}
@@ -340,6 +348,13 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@tanstack/svelte-virtual/3.0.0-beta.12:
+    resolution: {integrity: sha512-lxcOTNcx+gKl85N68roCInAL3O/KuiX6YfgCxYWVmkF4qwMNajq7nh1fd7atjfvwqO1I6dbVh4wGEOwhyDUppg==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@reach/observe-rect': 1.2.0
+    dev: false
 
   /@types/estree/1.0.1:
     resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
